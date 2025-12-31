@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import router from "./src/middlewares/routes/index.js";
 
 const app = express();
 
@@ -13,6 +14,8 @@ app.use(
 
 app.use(cookieParser());
 app.use(express.json());
+
+app.use(router);
 
 app.get("/", (req, res) => {
   console.log("req came");

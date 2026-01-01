@@ -21,14 +21,14 @@ app.use(cookieParser());
 app.use(express.json());
 
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
-app.use("/api-docs", serve, setup(swaggerDocs));
-app.use(router);
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 app.get("/", (req, res) => {
   console.log("req came");
   res.status(200).sendFile(path.join(__dirname, "src", "pages", "index.html"));
 });
+
+app.use("/api-docs", serve, setup(swaggerDocs));
+app.use(router);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default app;

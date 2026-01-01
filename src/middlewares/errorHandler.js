@@ -8,7 +8,9 @@ export class CustomError extends Error {
 export const errorHandler = (err, req, res, next) => {
   console.log(err);
   if (err instanceof CustomError) {
+    console.log("Custom Error");
     return res.status(err.code).json({ success: false, message: err.message });
   }
-  res.status(500).json({ success: false, message: "Internal server error" });
+  console.log("Server Error");
+  res.status(500).json({ message: "Server problem" });
 };

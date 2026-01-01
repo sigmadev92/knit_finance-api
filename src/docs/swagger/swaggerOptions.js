@@ -17,6 +17,47 @@ const swaggerOptions = {
 
     // ❗ securitySchemes MUST be inside "components"
     components: {
+      schemas: {
+        User: {
+          type: "object",
+          properties: {
+            fullName: {
+              type: "string",
+            },
+            email: {
+              type: "string",
+              format: "email",
+            },
+            _id: {
+              type: "string",
+              length: 24,
+            },
+          },
+        },
+        Task: {
+          type: "object",
+          properties: {
+            _id: {
+              type: "string",
+              length: 24,
+            },
+            title: {
+              type: "string",
+            },
+            description: {
+              type: "string",
+            },
+            status: {
+              type: "string",
+              example: "Approved",
+            },
+            userId: {
+              type: "string",
+              length: 24,
+            },
+          },
+        },
+      },
       securitySchemes: {
         cookieAuth: {
           type: "apiKey",

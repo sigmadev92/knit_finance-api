@@ -1,1 +1,3 @@
-export const notFoud = (req, res, next) => {};
+export const notFound = (req, res, next) => {
+  return res.status(404).json({ message: "Invalid Route" });
+};

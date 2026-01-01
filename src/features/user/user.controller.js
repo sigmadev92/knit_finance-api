@@ -8,6 +8,7 @@ import {
   updateUserRoleRepo,
 } from "./user.repo.js";
 import { CustomError } from "../../middlewares/errorHandler.js";
+import { JWT_SECRET, NODE_ENV } from "../../config/env.js";
 const regUser = async (req, res, next) => {
   //guarnteed the data is free from injection and is validated
   const { fullName, email, password } = req.body;
@@ -37,7 +38,7 @@ const loginUser = async (req, res, next) => {
     return next(new CustomError(403, "Invalid Password"));
   }
 
-  const token = jwt.sign({ _id: user._id, email, role: user.role });
+  const token = jwt.sign({ _id: user._id, email, role: user.role }, JWT_SECRET);
   const cookieOptions = {
     httpOnly: true,
     sameSite: NODE_ENV === "production" ? "none" : "lax",

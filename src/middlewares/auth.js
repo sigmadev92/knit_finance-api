@@ -1,5 +1,6 @@
 import { JWT_SECRET } from "../config/env.js";
 import { CustomError } from "./errorHandler.js";
+import jwt from "jsonwebtoken";
 
 const authMiddleware = (req, res, next) => {
   const token = req.cookies.knit_token;

@@ -23,7 +23,7 @@ const regUser = async (req, res, next) => {
     });
     return res.status(201).json({ response });
   } catch (error) {
-    next(new CustomError(503, "Failed to add new user"));
+    next(error);
   }
 };
 const loginUser = async (req, res, next) => {

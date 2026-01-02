@@ -14,6 +14,11 @@ const taskSchema = new mongoose.Schema(
       maxlength: 500,
       required: true,
     },
+    attempts: {
+      type: Number,
+      default: 0,
+      max: 5,
+    },
     status: {
       type: String,
       enum: [

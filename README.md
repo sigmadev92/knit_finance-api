@@ -6,20 +6,21 @@ Deadline - 4 January 2026
 
 0. Useful Links and sample data
 1. Overview
-2. Features
-3. Tech Stack
-4. Prerequisites
-5. Start Commands
-6. Folder Structure
-7. Envrironment Variables
-8. Cookie
-9. Swagger Documentation
-10. Troubleshooting
+2. Working
+3. Features
+4. Tech Stack
+5. Prerequisites
+6. Start Commands
+7. Folder Structure
+8. Envrironment Variables
+9. Cookie
+10. Swagger Documentation
+11. Troubleshooting
 
 ## Useful Links and sample data
 
 ```md
-[Frontend github Link]
+[Frontend github Link](https://github.com/sigmadev92/knit_finance_client)
 [Server Github Link](https://github.com/sigmadev92/knit_finance-api)
 [Deployed Frontend Link]
 [Deployed Server Link]
@@ -32,13 +33,33 @@ sample password: user1@Pass
 
 This is an assignment Project provided by Knit Finance to test knowledge of REST API and CRUD Operations along with API documentation.
 
+## Working
+
+The Assignment gave no instructions on how many admins can be created. We assume only 1 admin can be created.
+
+- So a user can create task by providing title and description.
+- A task has a default status of Not Started
+- When the user starts working on it : In Progress
+- Once it is in progress, the status can't be truned "Not Started"
+- When the user Completes the task : Completed
+- When the user sends it for testing : Testing
+- If admin verifies and found any errors : Failed
+- IF admin approves it : Approved
+
+- Once the task is in testing or approved by Admin, it can not be edited or deleted.
+- Once user completes it, the attempts increases.
+- A user can request for working on the task for 5 times.
+
 ## Features
 
-- JWT Authentication
 - Role based access
 - User can write, edit, delete a task
 - User can send a completed task for Verification
 - Admins can only verify a task
+- Secure JWT token handling
+- Input sanitization & validation
+- Rate Limiting using Redis
+- Scalable project structure for new modules
 
 ## Tech Stack
 
@@ -123,6 +144,7 @@ NODE_ENV;
 PORT;
 MONGO_URI;
 JWT_SECRET;
+CLIENT_URL;
 ```
 
 ## Cookie

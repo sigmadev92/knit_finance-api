@@ -6,5 +6,6 @@ const server = http.createServer(app);
 
 server.listen(PORT, () => {
   console.log(`SERVER LISTENING ON http://localhost:${PORT}`);
+
   connectDBMongoose();
 });

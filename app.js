@@ -7,12 +7,14 @@ import router from "./src/middlewares/routes/index.js";
 import swaggerJSDoc from "swagger-jsdoc";
 import { serve, setup } from "swagger-ui-express";
 import swaggerOptions from "./src/docs/swagger/swaggerOptions.js";
+import { CLIENT_URL } from "./src/config/env.js";
 
 const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: CLIENT_URL,
+    credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );

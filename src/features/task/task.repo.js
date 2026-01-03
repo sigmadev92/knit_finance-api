@@ -42,14 +42,14 @@ const changeStatusByUserRepo = async (status, taskId, userId) => {
   };
 };
 
-const changeStatusByAdmin = async (status, taskId) => {};
-
 const removeTaskRepo = async (userId, taskId) => {
   const result = await Tasks.findOneAndDelete({ userId, taskId });
   return result;
 };
 
-const getTasksRepo = async () => {};
+const getTasksRepo = async (userId) => {
+  return await Tasks.find({ userId });
+};
 
 export {
   addTaskRepo,
@@ -57,4 +57,5 @@ export {
   editTaskRepo,
   removeTaskRepo,
   changeStatusByUserRepo,
+  getTasksRepo,
 };

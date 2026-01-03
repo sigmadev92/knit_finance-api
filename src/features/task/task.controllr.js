@@ -2,6 +2,7 @@ import {
   addTaskRepo,
   changeStatusByUserRepo,
   editTaskRepo,
+  getTasksRepo,
   removeTaskRepo,
 } from "./task.repo.js";
 import { CustomError } from "../../middlewares/errorHandler.js";
@@ -43,6 +44,7 @@ const changeStatusByUser = async (req, res, next) => {
   }
 
   const { taskId } = req.params;
+  console.log(taskId);
   const userId = req.USER._id;
 
   const response = await changeStatusByUserRepo(status, taskId, userId);
@@ -65,4 +67,9 @@ const deleteTask = async (req, res, next) => {
 
 const findTasks = async (req, res, next) => {};
 
-export { addNewTask, updateTask, deleteTask, changeStatusByUser };
+const getMyTasks = async (req, res, next) => {
+  const myTasks = await getTasksRepo(req.USER._id);
+  return res.status(200).json({ tasks: myTasks });
+};
+
+export { addNewTask, updateTask, deleteTask, changeStatusByUser, getMyTasks };

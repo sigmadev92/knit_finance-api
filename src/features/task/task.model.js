@@ -29,12 +29,17 @@ const taskSchema = new mongoose.Schema(
         "Failed",
         "Approved",
       ],
-      default: ["Not Started"],
+      default: "Not Started",
     },
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
+    },
+    adminId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      default: null,
     },
   },
   { timestamps: true }

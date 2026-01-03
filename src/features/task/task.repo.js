@@ -10,7 +10,7 @@ const getTaskById = async (userId, taskId) => {
 };
 const editTaskRepo = async (data, userId, taskId) => {
   const updatedTask = await Tasks.findOneAndUpdate(
-    { _id: taskId, userId },
+    { _id: taskId, userId, status: "In Progress" },
     data,
     { new: true }
   );
@@ -43,7 +43,12 @@ const changeStatusByUserRepo = async (status, taskId, userId) => {
 };
 
 const removeTaskRepo = async (userId, taskId) => {
-  const result = await Tasks.findOneAndDelete({ userId, taskId });
+  const result = await Tasks.findOneAndDelete({
+    userId,
+    _id: taskId,
+    status: { $ne: "Testing" },
+  });
+  console.log("At repo", result);
   return result;
 };
 

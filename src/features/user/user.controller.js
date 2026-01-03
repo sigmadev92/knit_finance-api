@@ -30,12 +30,12 @@ const loginUser = async (req, res, next) => {
   const { email, password } = req.body;
   const user = await findUserByEmailRepo(email);
   if (!user) {
-    return next(new CustomError(403, "This Email was not found"));
+    return next(new CustomError(401, "This Email was not found"));
   }
 
   const isPasswordMatched = await bcrypt.compare(password, user.password);
   if (!isPasswordMatched) {
-    return next(new CustomError(403, "Invalid Password"));
+    return next(new CustomError(401, "Invalid Password"));
   }
 
   const token = jwt.sign({ _id: user._id, email, role: user.role }, JWT_SECRET);

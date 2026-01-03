@@ -21,12 +21,15 @@
       main {
         padding: 1rem;
       }
-      a#swagger {
+      a.links {
         padding: 0.3rem 0.5rem;
         text-decoration: none;
         background-color: rgba(106, 15, 226, 0.669);
         color: white;
         border-radius: 0.3rem;
+      }
+      a#client:hover {
+        background-color: black;
       }
       a#swagger:hover {
         background-color: blue;
@@ -39,7 +42,8 @@
     </header>
 
     <main>
-      <a id="swagger" href="/api-docs">Swagger Documentation</a>
+      <a class="links" id="swagger" href="/api-docs">Swagger Documentation</a>
+      <a class="links" id="client" href="http://localhost:5173">Client</a>
     </main>
   </body>
 </html>

@@ -6,12 +6,12 @@ const authMiddleware = (req, res, next) => {
   const token = req.cookies.knit_token;
 
   if (!token) {
-    return next(new CustomError(403, "Credentials Missing"));
+    return next(new CustomError(401, "Credentials Missing"));
   }
 
   const user = jwt.verify(token, JWT_SECRET);
   if (!user) {
-    return next(new CustomError(403, "Invalid or Expired Token"));
+    return next(new CustomError(401, "Invalid or Expired Token"));
   }
   req.USER = { ...user, iat: "", exp: "" };
   return next();
@@ -28,19 +28,19 @@ const preventExposed = (req, res, next) => {
     return next();
   }
 
-  next(new CustomError(400, "You are already logged in."));
+  next(new CustomError(403, "Only Allow Non Authenticated Users."));
 };
 
 const onlyAdmin = async (req, res, next) => {
   if (req.USER.role === "admin") return next();
 
-  return next(new CustomError(403, "Only Admin can access the route"));
+  return next(new CustomError(403, "Only Admin can access the feature"));
 };
 
 const onlyUser = async (req, res, next) => {
   if (req.USER.role === "user") return next();
 
-  return next(new CustomError(403, "Only User can access the route"));
+  return next(new CustomError(403, "Only User can access the feature"));
 };
 
 export { authMiddleware, preventExposed, onlyAdmin, onlyUser };
